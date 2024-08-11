@@ -8,11 +8,19 @@ st.set_page_config(page_title='Iris Project Arshad', layout='wide')
 
 st.title('Iris Project')
 
+# Load Dataset
+iris_data = pd.read_csv('notebook/iris.csv')
 
-sep_len = st.number_input('Sepal Length in CM:', min_value=0.00, step=0.01)
-sep_wid = st.number_input('Sepal Width in CM:', min_value=0.00, step=0.01)
-pet_len = st.number_input('Petal Length in Cm:', min_value=0.00, step=0.01)
-pet_wid = st.number_input('Petal Width in Cm:', min_value=0.00, step=0.01)
+# Prepare the data for dropdown menus
+sepal_length = sorted(iris_data['SepalLengthCm'].unique())
+sepal_width = sorted(iris_data['SepalWidthCm'].unique())
+patel_length = sorted(iris_data['PetalLengthCm'].unique())
+patel_width = sorted(iris_data['PetalWidthCm'].unique())
+
+sep_len = st.selectbox('Sepal Length in CM:', sepal_length)
+sep_wid = st.selectbox('Sepal Width in CM:', sepal_width)
+pet_len = st.selectbox('Petal Length in Cm:', patel_length)
+pet_wid = st.selectbox('Petal Width in Cm:', patel_width)
 
 
 submit = st.button('Predict')
